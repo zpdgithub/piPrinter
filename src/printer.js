@@ -14,8 +14,14 @@ function align(align) {
     console.log('align:', align);
     var buffer;
     switch (align) {
+        case 'left':
+            buffer = Buffer.from([27, 97, 0]);
+            break;
         case 'center':
             buffer = Buffer.from([27, 97, 1]);
+            break;
+        case 'right':
+            buffer = Buffer.from([27, 97, 2]);
             break;
         default:
             buffer = Buffer.from([]);
