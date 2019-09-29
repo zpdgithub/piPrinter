@@ -1,11 +1,14 @@
 var fs = require('fs');
 var iconv = require('iconv-lite');
 
-function setDevice(device){
+// #region 设置打印机地址
+function setDevice(device) {
     printer.device = device;
     return printer;
 }
+// #endregion
 
+// #region 对齐方式
 function align(align) {
     console.log('align:', align);
     var buffer;
@@ -19,14 +22,18 @@ function align(align) {
     printer.buffer = Buffer.concat([printer.buffer, buffer]);
     return printer;
 }
+// #endregion
 
+// #region 打印文字
 function text(text) {
     console.log('text:', text);
     var buffer = iconv.encode(text, 'gbk');
     printer.buffer = Buffer.concat([printer.buffer, buffer]);
     return printer;
 }
+// #endregion
 
+// #region 执行打印
 function print() {
     var buffer = Buffer.from([0x1B, 0x64, 0x01]);
     var content = Buffer.concat([printer.buffer, buffer]);
@@ -40,6 +47,7 @@ function print() {
         printer.buffer = Buffer.from([]);
     });
 }
+// #endregion
 
 var printer = {
     device: '/dev/usb/lp0',
