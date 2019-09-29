@@ -9,12 +9,13 @@ function setDevice(device) {
 // #endregion
 
 // #region 对齐方式
+// 22.ESC a n: 选择对齐方式
 function align(align) {
     console.log('align:', align);
     var buffer;
     switch (align) {
         case 'center':
-            buffer = Buffer.from([0x1B, 0x61, 0x01]);
+            buffer = Buffer.from([27, 97, 1]);
             break;
         default:
             buffer = Buffer.from([]);
@@ -35,7 +36,7 @@ function text(text) {
 
 // #region 执行打印
 function print() {
-    var buffer = Buffer.from([0x1B, 0x64, 0x01]);
+    var buffer = Buffer.from([27, 100, 1]); // 24.ESC d n: 打印并向前走纸n行
     var content = Buffer.concat([printer.buffer, buffer]);
     console.log('print:', content);
     fs.writeFile(printer.device, content, function (error) {
