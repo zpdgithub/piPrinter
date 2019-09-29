@@ -31,6 +31,20 @@ function align(align) {
 }
 // #endregion
 
+// #region 对齐方式
+// 30.GS ! n: 选择字符大小
+function size(widthTimes, heightTimes) {
+    if (widthTimes < 1 || widthTimes > 8 || heightTimes < 1 || heightTimes > 8) {
+        widthTimes = 1;
+        heightTimes = 1;
+    }
+    var times = 0x10 * (widthTimes - 1) + 0x01 * (heightTimes - 1);
+    var buffer = Buffer.from([29, 33, times]);
+    printer.buffer = Buffer.concat([printer.buffer, buffer]);
+    return printer;
+}
+// #endregion
+
 // #region 打印文字
 function text(text) {
     console.log('text:', text);
@@ -61,6 +75,7 @@ var printer = {
     buffer: Buffer.from([]),
     setDevice: setDevice,
     align: align,
+    size: size,
     text: text,
     print: print
 };
