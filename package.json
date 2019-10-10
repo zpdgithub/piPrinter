@@ -1,13 +1,14 @@
 {
   "name": "piPrinter",
   "version": "1.0.0",
-  "description": "",
+  "description": "树莓派escpos小票打印机无驱打印",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["树莓派", "escpos", "小票打印机", "无驱打印"],
+  "author": "Peter Zou",
   "license": "ISC",
   "dependencies": {
     "iconv-lite": "0.5.0"
